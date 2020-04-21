@@ -30,13 +30,6 @@ A = 2; % [Volt] Amplitudo sinya
 % Pembangkitan sinyal sinus
 x0 = A*sin(2*pi*fx*t);
 
-% Pembangkitan sinyal gergaji (sawtooth)
-x1 = A*sawtooth(2*pi*fx*t);
-
-% Pembangkitan sinyal kotak (square)
-x2 = A*square(2*pi*fx*t);
-
-
 %% Menampilkan Grafik Sinyal pada domain waktu
 % Batas batas grafik:
 sumbu_x_min = 0;
@@ -51,22 +44,10 @@ grid on; axis([sumbu_x_min sumbu_x_max sumbu_y_min sumbu_y_max]);
 title('Sinyal Sinusoidal'); 
 xlabel('waktu (detik)');ylabel('Amplitudo (V)')
 
-figure(2)
-plot(t,x1)
-grid on; axis([sumbu_x_min sumbu_x_max sumbu_y_min sumbu_y_max]);
-title('Sinyal Gergaji'); 
-xlabel('waktu (detik)');ylabel('Amplitudo (V)')
-
-figure(3)
-plot(t,x2)
-grid on; axis([sumbu_x_min sumbu_x_max sumbu_y_min sumbu_y_max]);
-title('Sinyal Kotak'); 
-xlabel('waktu (detik)');ylabel('Amplitudo (V)')
-
 %% Spectrum monitoring
 zdouble = fft(x0,1024);
 zdouble = abs(zdouble(1:length(zdouble)/2+1));
 frqdouble = [0:length(zdouble)-1]*fs/length(zdouble)/2;
 figure(4)
 plot(frqdouble,zdouble);
-grid on
+grid on; axis([0 50])
